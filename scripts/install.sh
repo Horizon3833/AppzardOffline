@@ -81,13 +81,9 @@ function downloadUpgradeScript() {
 }
 function unpackFiles {
     # Unzip the downloaded files
-    unzip -o -q "${appdata}/deps/appengine.zip" -d "${appdata}/deps/appengine"
     unzip -o -q "${appdata}/deps/build.zip" -d "${appdata}/deps"
-    unzip -o -q "${appdata}/deps/buildserver.zip" -d "${appdata}/deps/buildserver"
     # So we don't take a large space
-    rm "${appdata}/deps/appengine.zip"
     rm "${appdata}/deps/build.zip"
-    rm "${appdata}/deps/buildserver.zip"
 }
 green="\033[32m"
 yellow="\033[33m"
@@ -116,14 +112,8 @@ else
   chmod +x "$bindir/appzard"
 fi
 echo -e "${green}Done!${reset}"
-echo "Downloading Appengine java SDK.."
-downloadAppengine "${appengineDownloadUrl}"
-echo -e "${green}Done!${reset}"
 echo "Downloading Build files.."
 downloadBuildFiles "${buildDownloadUrl}"
-echo -e "${green}Done!${reset}"
-echo "Downloading Buildserver files.."
-downloadBuildserverFiles "${buildserverDownloadUrl}"
 echo -e "${green}Done!${reset}"
 echo "Downloading Upgrade Script.."
 downloadUpgradeScript
@@ -131,4 +121,3 @@ echo -e "${green}Done!${reset}"
 echo "Unpacking files.."
 unpackFiles
 echo -e "${green}Done!${reset}"
-echo -e "${yellow}Appzard has been successfully installed on your device! Please add this path: ${bindir} to your PATH environment variable, then run appzard -v to verify the installation.${reset}"
